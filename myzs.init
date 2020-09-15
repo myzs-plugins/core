@@ -1,3 +1,32 @@
 export MYZS_PLUGIN=true
 export MYZS_PLUGIN_NAME=""
 export MYZS_PLUGIN_VERSION="v0.0.0-development"
+
+_myzs:internal:git:switch() {
+  local env="$1"
+  local email="$2"
+  local sign_key="$3"
+  local gh_username="$4"
+
+  local args=()
+
+  if [[ "$env" == "global" ]]; then
+    args+=("--global")
+  elif [[ "$env" == "system" ]]; then
+    args+=("--system")
+  elif [[ "$env" == "worktree" ]]; then
+    args+=("--worktree")
+  fi
+
+  git config \
+    "${args[@]}" \
+    user.email "$email"
+
+  git config \
+    "${args[@]}" \
+    user.signingKey "$sign_key"
+
+  git config \
+    "${args[@]}" \
+    github.user "$gh_username"
+}
