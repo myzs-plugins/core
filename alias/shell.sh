@@ -1,6 +1,6 @@
 # shellcheck disable=SC1090,SC2148
 
-_myzs:internal:module:initial "$0"
+myzs:module:new "$0"
 
 _myzs:internal:alias "restart-zsh" "exec zsh"
 _myzs:internal:alias "restart-bash" "exec bash"
